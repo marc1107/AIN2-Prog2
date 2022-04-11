@@ -41,14 +41,16 @@ public class Evaluator {
         token = tokenizer.nextToken();
 
         while (token != null) {
-            if (!shift() && reduce()) {
-                if(accept()) {
-                    double value = (double) stack[top];
-                    stack = new Object[10];
-                    return value;
+            if (!shift()) {
+                if (reduce()) {
+                    if(accept()) {
+                        double value = (double) stack[top];
+                        stack = new Object[10];
+                        return value;
+                    }
+                } else {
+                    return null;
                 }
-            } else if (!shift() && !reduce()) {
-                return null;
             }
         }
         return null;
@@ -104,7 +106,7 @@ public class Evaluator {
                 && (token == KL_ZU || token == DOLLAR)) {       // Regel 8 der Parser-Tabelle
             doReduceValOpVal();
             return true;
-        } else if ((isVal(stack[top]) && isOp(stack[top-1]) && isVal(stack[top-2])) && isOp(token)) {       // Regel 9 der Parser-Tabelle
+        } else if (isVal(stack[top]) && isOp(stack[top-1]) && isVal(stack[top-2]) && isOp(token)) {       // Regel 9 der Parser-Tabelle
             doReduceValOpVal();
             return true;
         }
@@ -128,7 +130,7 @@ public class Evaluator {
     }
 
     private static boolean accept() {
-        return (isVal(stack[top]) && stack[top-1] == DOLLAR) && (token == DOLLAR);
+        return isVal(stack[top]) && stack[top-1] == DOLLAR && (token == DOLLAR);
     }
 
     /**
@@ -158,7 +160,7 @@ public class Evaluator {
             case PLUS -> 1;
             case MULT -> 2;
             case POWER -> 3;
-            default -> throw new IllegalStateException("Falscher Operator: " + o.toString());
+            default -> throw new IllegalStateException("Falscher Operator: " + o);
         };
     }
 
