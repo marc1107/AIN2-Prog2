@@ -10,6 +10,7 @@
  */
 package aufgabe3;
 
+import java.util.Arrays;
 import java.util.Scanner;
 import static aufgabe3.Tokenizer.*;
 
@@ -40,8 +41,15 @@ public class Evaluator {
         token = tokenizer.nextToken();
 
         while (token != null) {
-            // Ihr Code:
-            // ...
+            if (!shift() && reduce()) {
+                if(accept()) {
+                    double value = (double) stack[top];
+                    stack = new Object[10];
+                    return value;
+                }
+            } else if (!shift() && !reduce()) {
+                return null;
+            }
         }
         return null;
     }
@@ -50,16 +58,33 @@ public class Evaluator {
         if (stack[top] == DOLLAR && (token == KL_AUF || isVal(token))) {		// Regel 1 der Parser-Tabelle
             doShift();
             return true;
-        } // Ihr Code:
-        // ... 
-        else {
-            return false;
+        } else if (isOp(stack[top]) && (token == KL_AUF || isVal(token))) {     // Regel 2 der Parser-Tabelle
+            doShift();
+            return true;
+        } else if (stack[top] == KL_AUF && (token == KL_AUF || isVal(token))) {     // Regel 3 der Parser-Tabelle
+            doShift();
+            return true;
+        } else if (isVal(stack[top]) && stack[top-1] == DOLLAR && isOp(token)) {        // Regel 6 der Parser-Tabelle
+            doShift();
+            return true;
+        } else if ((isVal(stack[top]) && stack[top-1] == KL_AUF) && (token == KL_ZU || isOp(token))) {      // Regel 7 der Parser-Tabelle
+            doShift();
+            return true;
+        } else if ((isVal(stack[top]) && isOp(stack[top-1]) && isVal(stack[top-2])) && isOp(token)) {      // Regel 9 der Parser-Tabelle
+            if (precedenceLevel(token) > precedenceLevel(stack[top-1])) {
+                doShift();
+                return true;
+            }
         }
+        return false;
     }
 
     private static void doShift() {
-        // Ihr Code:
-        // ... 
+        if (top >= stack.length - 1) {
+            stack = Arrays.copyOf(stack, stack.length * 2);
+        }
+        stack[++top] = token;
+        token = tokenizer.nextToken();
     }
 
     private static boolean isOp(Object o) {
@@ -71,25 +96,39 @@ public class Evaluator {
     }
 
     private static boolean reduce() {
-        // Ihr Code:
-        // ...
+        if ((stack[top] == KL_ZU && isVal(stack[top-1]) && stack[top-2] == KL_AUF)
+                && (token == KL_ZU || isOp(token) || token == DOLLAR)) {       // Regel 4 der Parser-Tabelle
+            doReduceKlValKl();
+            return true;
+        } else if ((isVal(stack[top]) && isOp(stack[top-1]) && isVal(stack[top-2]))
+                && (token == KL_ZU || token == DOLLAR)) {       // Regel 8 der Parser-Tabelle
+            doReduceValOpVal();
+            return true;
+        } else if ((isVal(stack[top]) && isOp(stack[top-1]) && isVal(stack[top-2])) && isOp(token)) {       // Regel 9 der Parser-Tabelle
+            doReduceValOpVal();
+            return true;
+        }
         return false;
     }
 
     private static void doReduceKlValKl() {
-        // Ihr Code:
-        // ...
+        stack[top-2] = stack[top-1];
+        top -= 2;
     }
 
     private static void doReduceValOpVal() {
-        // Ihr Code:
-        // ...
+        if (stack[top-1] == PLUS) {
+            stack[top-2] = (double) stack[top-2] + (double) stack[top];
+        } else if (stack[top-1] == MULT) {
+            stack[top-2] = (double) stack[top-2] * (double) stack[top];
+        } else {
+            stack[top-2] = Math.pow((double) stack[top-2], (double) stack[top]);
+        }
+        top -= 2;
     }
 
     private static boolean accept() {
-        // Ihr Code:
-        // ...
-        return false;
+        return (isVal(stack[top]) && stack[top-1] == DOLLAR) && (token == DOLLAR);
     }
 
     /**
@@ -102,10 +141,25 @@ public class Evaluator {
 
         while (in.hasNextLine()) {
             String line = in.nextLine();
-            // Ihr Code:
-            // ...
+
+            if (line.equals("end")) {
+                System.out.println("bye!");
+                break;
+            }
+
+            System.out.println(ANSI_BLUE + ">> " + eval(line));
             System.out.print(ANSI_BLUE + ">> ");
         }
+    }
+
+    // Gibt das Präzedenzlevel zurück
+    private static int precedenceLevel(Object o) {
+        return switch (o.toString()) {
+            case PLUS -> 1;
+            case MULT -> 2;
+            case POWER -> 3;
+            default -> throw new IllegalStateException("Falscher Operator: " + o.toString());
+        };
     }
 
     /**
@@ -137,6 +191,6 @@ public class Evaluator {
         System.out.println(eval(s9));	// 21.0
         System.out.println(eval(s10));	// 21.0
 
-        // repl();
+        repl();
     }
 }
