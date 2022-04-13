@@ -82,9 +82,9 @@ public class Evaluator {
     }
 
     private static void doShift() {
-        if (top >= stack.length - 1) {
+        if (top >= stack.length - 1)
             stack = Arrays.copyOf(stack, stack.length * 2);
-        }
+
         stack[++top] = token;
         token = tokenizer.nextToken();
     }
