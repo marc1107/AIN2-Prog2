@@ -54,9 +54,9 @@ public interface FrequencyTable<T> extends Iterable<Element<T>> {
      * get(1) liefert das zweithäufigste Wort zurück, usw.
      * @param pos Position.
      * @return Wort mit Häufigkeit oder null,
-     * falls die Tabelle weniger als pos-1 Elemente  enthält.
+     * falls die Tabelle weniger als pos-1 Elemente enthält.
      */
-    Element get(int pos);
+    Element<T> get(int pos);
 
     /**
      * Liefert die Häufigkeit des Worts w zurück.
@@ -67,7 +67,7 @@ public interface FrequencyTable<T> extends Iterable<Element<T>> {
     int get(T w);
 
     /**
-     * Sammelt alle Wörter mit der gr&ouml;ssten Häufigkeit und speichert sie in fq.
+     * Sammelt alle Wörter mit der größten Häufigkeit und speichert sie in fq.
      * Beispiel:
      * Falls tab1 = {"ein":3, "das":3, "ist":2, "der:1", "die":1}, dann
      * gilt nach Aufruf von tab1.collectMostFrequent(tab2):

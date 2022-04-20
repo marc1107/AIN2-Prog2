@@ -11,7 +11,7 @@ import java.util.Iterator;
  */
 public class ArrayFrequencyTable<T> extends AbstractFrequencyTable<T> {
     private int size;
-    private Element<T> fqTable[];
+    private Element<T>[] fqTable;
     private final int DEFAULT_SIZE = 100;
     private int modCount;
 
@@ -44,7 +44,7 @@ public class ArrayFrequencyTable<T> extends AbstractFrequencyTable<T> {
         if (this.size >= this.fqTable.length) {
             fqTable = Arrays.copyOf(this.fqTable, this.size + DEFAULT_SIZE);
         }
-        fqTable[this.size] = new Element(w, f);
+        fqTable[this.size] = new Element<>(w, f);
         moveToLeft(this.size);
         this.size++;
         this.modCount++;
@@ -71,7 +71,7 @@ public class ArrayFrequencyTable<T> extends AbstractFrequencyTable<T> {
     // verschiebt das Objekt an der übergebenen Position an die richtige Position
     // von groß nach klein sortiert
     private void moveToLeft(int pos) {
-        Element w = fqTable[pos];
+        Element<T> w = fqTable[pos];
         int i = pos-1;
 
         while (i >= 0 && w.getFrequency() > fqTable[i].getFrequency()) {
@@ -90,7 +90,7 @@ public class ArrayFrequencyTable<T> extends AbstractFrequencyTable<T> {
     private class ArrayFrequencyTableIterator implements Iterator<Element<T>>
     {
         private int index = 0;
-        private int expecxtedMod = modCount;
+        private final int expectedMod = modCount;
 
         @Override
         public boolean hasNext()
@@ -101,7 +101,7 @@ public class ArrayFrequencyTable<T> extends AbstractFrequencyTable<T> {
         @Override
         public Element<T> next()
         {
-            if (expecxtedMod != modCount)
+            if (expectedMod != modCount)
                 throw new ConcurrentModificationException();
 
             return fqTable[index++];
