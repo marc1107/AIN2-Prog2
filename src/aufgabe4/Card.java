@@ -31,12 +31,18 @@ public class Card
         this.rank = rank;
     }
 
-    public boolean equals(Card c) {
-        return (this.suit == c.suit && this.rank == this.rank);
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Card) {
+            Card c = (Card) o;
+            return (this.suit == c.suit && this.rank == c.rank);
+        }
+        return false;
     }
 
+    @Override
     public String toString() {
-        return this.suit + ":" + this.rank;
+        return this.suit + " " + this.rank;
     }
 
     public enum Suit

@@ -1,4 +1,4 @@
-package aufgabe4;
+package tsaufgabe4;
 
 import java.util.Random;
 
@@ -18,17 +18,17 @@ public class CardFrequencyTable_Test {
 
 		// Beachte:
 		// Evtl. wird bei Ihnen die rite Karte "sieben Herz" anders definiert.
-		redCardTab.add(new RedCard(Card.Suit.Herz, Card.Rank.Sieben));
-		System.out.println(redCardTab.get(new RedCard(Card.Suit.Herz, Card.Rank.Sieben))); // sollte die Häufigkeit 1 ergeben
+		redCardTab.add(new RedCard(Card.Farbe.Herz, Card.Wert.Sieben));
+		System.out.println(redCardTab.get(new RedCard(Card.Farbe.Herz, Card.Wert.Sieben))); // sollte die Häufigkeit 1 ergeben
 		
 		Random rand = new Random();
 		for (int i = 0; i < 400; i++) {
 			if (rand.nextInt() % 2 == 0) {
-				RedCard c = new RedCard();
+				RedCard c = new RedCard(Card.Farbe.Herz, Card.Wert.Bube);
 				cardTab1.add(c);
 				redCardTab.add(c);
 			} else {
-				BlackCard c = new BlackCard();
+				BlackCard c = new BlackCard(Card.Farbe.Kreuz, Card.Wert.Koenig);
 				cardTab1.add(c);
 				blackCardTab.add(c);
 			}
@@ -42,8 +42,8 @@ public class CardFrequencyTable_Test {
 		cardTab1.addAll(redCardTab);
 		redCardTab.addAll(redCardTab);
 		System.out.println(redCardTab);
-		cardTab1.collectMostFrequent(cardTab2);
+		cardTab1.copyMostFrequent(cardTab2);
 		//cardTab1.collectMostFrequent(redCardTab); // nicht OK	
-		redCardTab.collectMostFrequent(cardTab1);
+		redCardTab.copyMostFrequent(cardTab1);
 	}
 }
