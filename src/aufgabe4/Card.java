@@ -2,14 +2,17 @@ package aufgabe4;
 
 public abstract class Card
 {
-    private Suit suit;
-    private Rank rank;
+    protected Suit suit;
+    protected Rank rank;
+    protected Rank[] ranks = rank.values();
 
-    public Card(Suit suit, Rank rank)
+    /*public Card(Suit suit, Rank rank)
     {
         this.setSuit(suit);
         this.setRank(rank);
     }
+
+    public Card() {    }*/
 
     public Suit getSuit()
     {
