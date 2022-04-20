@@ -19,7 +19,7 @@ public class LinkedListFrequencyTable_Test {
 	
 	private static void test1() {
 		// Test von add:
-		FrequencyTable tab1 = new LinkedListFrequencyTable();
+		FrequencyTable<String> tab1 = new LinkedListFrequencyTable<>();
 		tab1.add("das");
 		tab1.add("ist");
 		tab1.add("ein",2);

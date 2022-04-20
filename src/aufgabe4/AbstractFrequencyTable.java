@@ -18,7 +18,7 @@ public abstract class AbstractFrequencyTable<T> implements FrequencyTable<T> {
 
     @Override
     public void addAll(FrequencyTable<? extends T> fq) {
-        for (Element<? extends T> element : fq) {
+        for (var element : fq) {
             add(element.getData(), element.getFrequency());
         }
     }
@@ -27,7 +27,7 @@ public abstract class AbstractFrequencyTable<T> implements FrequencyTable<T> {
     public void collectMostFrequent(FrequencyTable<? super T> fq) {
         fq.clear();
 
-        for (Element<T> element : this) {
+        for (var element : this) {
             if (this.get(0).getFrequency() > element.getFrequency()) {
                 return;
             }
@@ -39,7 +39,7 @@ public abstract class AbstractFrequencyTable<T> implements FrequencyTable<T> {
     public void collectLeastFrequent(FrequencyTable<? super T> fq) {
         fq.clear();
 
-        for (Element<T> element : this) {
+        for (var element : this) {
             if (this.get(size() - 1).getFrequency() == element.getFrequency()) {
                 fq.add(element.getData(), element.getFrequency());
             }

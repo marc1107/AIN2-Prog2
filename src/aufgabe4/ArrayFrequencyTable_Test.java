@@ -19,7 +19,7 @@ public class ArrayFrequencyTable_Test {
 	
 	private static void test1() {
 		// Test von add:
-		FrequencyTable tab1 = new ArrayFrequencyTable();
+		FrequencyTable<String> tab1 = new ArrayFrequencyTable<>();
 		tab1.add("das");
 		tab1.add("ist");
 		tab1.add("ein",2);

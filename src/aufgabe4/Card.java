@@ -6,14 +6,6 @@ public abstract class Card
     protected Rank rank;
     protected Rank[] ranks = rank.values();
 
-    /*public Card(Suit suit, Rank rank)
-    {
-        this.setSuit(suit);
-        this.setRank(rank);
-    }
-
-    public Card() {    }*/
-
     public Suit getSuit()
     {
         return suit;
