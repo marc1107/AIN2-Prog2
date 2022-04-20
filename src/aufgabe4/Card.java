@@ -1,6 +1,6 @@
 package aufgabe4;
 
-public class Card
+public abstract class Card
 {
     private Suit suit;
     private Rank rank;
@@ -33,8 +33,7 @@ public class Card
 
     @Override
     public boolean equals(Object o) {
-        if (o instanceof Card) {
-            Card c = (Card) o;
+        if (o instanceof Card c) {
             return (this.suit == c.suit && this.rank == c.rank);
         }
         return false;
