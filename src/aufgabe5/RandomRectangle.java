@@ -16,8 +16,8 @@ public class RandomRectangle {
     public static void drawSquare(double ax, double ay, double length, double drehung) {
         // Zufällige Höhe des Rechtecks zwischen breite und Breite * 2
         double height = Math.random() * length + length;
-        // Zufälliger Winkel zwischen 10 und 90 Grad
-        int winkel = (int) (Math.random() * 90 + 10);
+        // Zufälliger Winkel zwischen 10 und 40 Grad
+        int winkel = (int) (Math.random() * 40 + 10);
 
         // Kleine Quadrate grün
         if (length < SCHWELLENWERT)
@@ -39,13 +39,13 @@ public class RandomRectangle {
         double dy = ay + t;
 
         // Untere Linie
-        StdDraw.line(ax, ay, bx, by);
+        //StdDraw.line(ax, ay, bx, by);
 
         // Rechte Linie
         StdDraw.line(bx, by, cx, cy);
 
         // Obere Linie
-        StdDraw.line(cx, cy, dx, dy);
+        //StdDraw.line(cx, cy, dx, dy);
 
         // Linke Linie
         StdDraw.line(dx, dy, ax, ay);
