@@ -6,14 +6,19 @@ public class RandomRectangle {
     public static final double SCHWELLENWERT = 0.002;
 
     public static void main(String[] args) {
+        Point A = new Point(0.5, 0.15);
+
         StdDraw.show(0);
+
         StdDraw.setCanvasSize(800, 800);
         StdDraw.setPenRadius(0.002);
-        drawSquare(0.5, 0.15, w, 0);
+
+        drawSquare(A, w, 0);
+
         StdDraw.show(0);
     }
 
-    public static void drawSquare(double ax, double ay, double length, double drehung) {
+    public static void drawSquare(Point A, double length, double drehung) {
         // Zufällige Höhe des Rechtecks zwischen breite und Breite * 2
         double height = Math.random() * length + length;
         // Zufälliger Winkel zwischen 10 und 40 Grad
@@ -31,37 +36,34 @@ public class RandomRectangle {
         double r = height * Math.sin(Math.toRadians(drehung));
         double t = height * Math.cos(Math.toRadians(drehung));
 
-        double bx = ax + c;
-        double by = ay + s;
-        double cx = ax + c - r;
-        double cy = ay + s + t;
-        double dx = ax - r;
-        double dy = ay + t;
+        Point B = new Point(A.x + c, A.y + s);
+        Point C = new Point(A.x + c -r, A.y + s + t);
+        Point D = new Point(A.x - r, A.y + t);
 
         // Untere Linie
-        //StdDraw.line(ax, ay, bx, by);
+        //StdDraw.line(A.x, A.y, B.x, B.y);
 
         // Rechte Linie
-        StdDraw.line(bx, by, cx, cy);
+        StdDraw.line(B.x, B.y, C.x, C.y);
 
         // Obere Linie
-        //StdDraw.line(cx, cy, dx, dy);
+        //StdDraw.line(C.x, C.y, D.x, D.y);
 
         // Linke Linie
-        StdDraw.line(dx, dy, ax, ay);
+        StdDraw.line(D.x, D.y, A.x, A.y);
 
         // Eckpunkt E berechnen
         double u = length * Math.cos(Math.toRadians(winkel));
         double v = length * Math.sin(Math.toRadians(winkel));
 
-        double ex = dx + u * Math.cos(Math.toRadians(winkel + drehung));
-        double ey = dy + u * Math.sin(Math.toRadians(winkel + drehung));
+        Point E = new Point(D.x + u * Math.cos(Math.toRadians(winkel + drehung)),
+                D.y + u * Math.sin(Math.toRadians(winkel + drehung)));
 
         if (length > SCHWELLENWERT) {
             // Quadrat an Kante u
-            drawSquare(dx, dy, u, drehung + winkel);
+            drawSquare(D, u, drehung + winkel);
             // Quadrat an Kante v
-            drawSquare(ex, ey, v, drehung + winkel - 90);
+            drawSquare(E, v, drehung + winkel - 90);
         }
     }
 }
