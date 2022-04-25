@@ -18,21 +18,21 @@ public class RandomRectangle {
         StdDraw.show(0);
     }
 
-    public static void drawSquare(Point A, double length, double drehung) {
+    public static void drawSquare(Point A, double width, double drehung) {
         // Zufällige Höhe des Rechtecks zwischen breite und Breite * 2
-        double height = Math.random() * length + length;
+        double height = Math.random() * width + width;
         // Zufälliger Winkel zwischen 10 und 40 Grad
         int winkel = (int) (Math.random() * 45 + 10);
 
         // Kleine Quadrate grün
-        if (length < SCHWELLENWERT)
+        if (width < SCHWELLENWERT)
             StdDraw.setPenColor(StdDraw.GREEN);
         else
             StdDraw.setPenColor(StdDraw.LIGHT_GRAY);
 
         // Eckpunkte berechnen
-        double s = length * Math.sin(Math.toRadians(drehung));
-        double c = length * Math.cos(Math.toRadians(drehung));
+        double s = width * Math.sin(Math.toRadians(drehung));
+        double c = width * Math.cos(Math.toRadians(drehung));
         double r = height * Math.sin(Math.toRadians(drehung));
         double t = height * Math.cos(Math.toRadians(drehung));
 
@@ -53,13 +53,13 @@ public class RandomRectangle {
         StdDraw.line(D.x, D.y, A.x, A.y);
 
         // Eckpunkt E berechnen
-        double u = length * Math.cos(Math.toRadians(winkel));
-        double v = length * Math.sin(Math.toRadians(winkel));
+        double u = width * Math.cos(Math.toRadians(winkel));
+        double v = width * Math.sin(Math.toRadians(winkel));
 
         Point E = new Point(D.x + u * Math.cos(Math.toRadians(winkel + drehung)),
                 D.y + u * Math.sin(Math.toRadians(winkel + drehung)));
 
-        if (length > SCHWELLENWERT) {
+        if (width > SCHWELLENWERT) {
             // Quadrat an Kante u
             drawSquare(D, u, drehung + winkel);
             // Quadrat an Kante v
