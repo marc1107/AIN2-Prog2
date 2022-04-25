@@ -13,12 +13,12 @@ public class RandomRectangle {
         StdDraw.setCanvasSize(800, 800);
         StdDraw.setPenRadius(0.002);
 
-        drawSquare(A, w, 0);
+        draw(A, w, 0);
 
         StdDraw.show(0);
     }
 
-    public static void drawSquare(Point A, double width, double drehung) {
+    public static void draw(Point A, double width, double drehung) {
         // Zufällige Höhe des Rechtecks zwischen breite und Breite * 2
         double height = Math.random() * width + width;
         // Zufälliger Winkel zwischen 10 und 40 Grad
@@ -61,9 +61,9 @@ public class RandomRectangle {
 
         if (width > SCHWELLENWERT) {
             // Quadrat an Kante u
-            drawSquare(D, u, drehung + winkel);
+            draw(D, u, drehung + winkel);
             // Quadrat an Kante v
-            drawSquare(E, v, drehung + winkel - 90);
+            draw(E, v, drehung + winkel - 90);
         }
     }
 }
