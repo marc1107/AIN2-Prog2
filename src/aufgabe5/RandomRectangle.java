@@ -1,19 +1,24 @@
 package aufgabe5;
 
-public class Square {
+public class RandomRectangle {
     public static final int delta = 30;
-    public static final double w = 0.16;
+    public static final double w = 0.06;
     public static final double SCHWELLENWERT = 0.002;
 
     public static void main(String[] args) {
         StdDraw.show(0);
         StdDraw.setCanvasSize(800, 800);
         StdDraw.setPenRadius(0.002);
-        drawSquare(0.6, 0.2, w, 0);
+        drawSquare(0.5, 0.15, w, 0);
         StdDraw.show(0);
     }
 
     public static void drawSquare(double ax, double ay, double length, double drehung) {
+        // Zufällige Höhe des Rechtecks zwischen breite und Breite * 2
+        double height = Math.random() * length + length;
+        // Zufälliger Winkel zwischen 10 und 90 Grad
+        int winkel = (int) (Math.random() * 90 + 10);
+
         // Kleine Quadrate grün
         if (length < SCHWELLENWERT)
             StdDraw.setPenColor(StdDraw.GREEN);
@@ -23,38 +28,40 @@ public class Square {
         // Eckpunkte berechnen
         double s = length * Math.sin(Math.toRadians(drehung));
         double c = length * Math.cos(Math.toRadians(drehung));
+        double r = height * Math.sin(Math.toRadians(drehung));
+        double t = height * Math.cos(Math.toRadians(drehung));
 
         double bx = ax + c;
         double by = ay + s;
-        double cx = ax + c - s;
-        double cy = ay + s + c;
-        double dx = ax - s;
-        double dy = ay + c;
+        double cx = ax + c - r;
+        double cy = ay + s + t;
+        double dx = ax - r;
+        double dy = ay + t;
 
         // Untere Linie
-        //StdDraw.line(ax, ay, bx, by);
+        StdDraw.line(ax, ay, bx, by);
 
         // Rechte Linie
         StdDraw.line(bx, by, cx, cy);
 
         // Obere Linie
-        //StdDraw.line(cx, cy, dx, dy);
+        StdDraw.line(cx, cy, dx, dy);
 
         // Linke Linie
         StdDraw.line(dx, dy, ax, ay);
 
         // Eckpunkt E berechnen
-        double u = length * Math.cos(Math.toRadians(delta));
-        double v = length * Math.sin(Math.toRadians(delta));
+        double u = length * Math.cos(Math.toRadians(winkel));
+        double v = length * Math.sin(Math.toRadians(winkel));
 
-        double ex = dx + u * Math.cos(Math.toRadians(delta + drehung));
-        double ey = dy + u * Math.sin(Math.toRadians(delta + drehung));
+        double ex = dx + u * Math.cos(Math.toRadians(winkel + drehung));
+        double ey = dy + u * Math.sin(Math.toRadians(winkel + drehung));
 
         if (length > SCHWELLENWERT) {
             // Quadrat an Kante u
-            drawSquare(dx, dy, u, drehung + delta);
+            drawSquare(dx, dy, u, drehung + winkel);
             // Quadrat an Kante v
-            drawSquare(ex, ey, v, drehung + delta - 90);
+            drawSquare(ex, ey, v, drehung + winkel - 90);
         }
     }
 }
