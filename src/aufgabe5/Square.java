@@ -1,6 +1,6 @@
 package aufgabe5;
 
-public class Main {
+public class Square {
     public static final int delta = 30;
     public static final double w = 0.16;
     public static final double SCHWELLENWERT = 0.002;
