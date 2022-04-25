@@ -2,7 +2,7 @@ package aufgabe5;
 
 public class RandomRectangle {
     public static final int delta = 30;
-    public static final double w = 0.06;
+    public static final double w = 0.09;
     public static final double SCHWELLENWERT = 0.002;
 
     public static void main(String[] args) {
@@ -17,7 +17,7 @@ public class RandomRectangle {
         // Zufällige Höhe des Rechtecks zwischen breite und Breite * 2
         double height = Math.random() * length + length;
         // Zufälliger Winkel zwischen 10 und 40 Grad
-        int winkel = (int) (Math.random() * 40 + 10);
+        int winkel = (int) (Math.random() * 45 + 10);
 
         // Kleine Quadrate grün
         if (length < SCHWELLENWERT)
