@@ -1,7 +1,7 @@
 package aufgabe6.teil2;
 
 public class Buch {
-    private String name;
+    private final String name;
     private Person entleiher;
 
     public Buch (String name) {
@@ -35,7 +35,7 @@ public class Buch {
 
     public void print() {
         if (this.entleiher != null) {
-            System.out.printf("Buch: %s, Entleiher: %s\n", this.name, this.entleiher.getName());
+            System.out.printf("Buch: %s, Entleiher: %s\n", this.name, getEntleiher().getName());
         } else {
             System.out.printf("Buch: %s, Entleiher: Niemand\n", this.name);
         }
