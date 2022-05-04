@@ -38,9 +38,9 @@ public class Buch {
 
     public void print() {
         if (this.entleiher != null) {
-            System.out.printf("Buch: %s, Entleiher: %s\n", this.name, getEntleiher().getName());
+            System.out.printf("Buch: %s; Entleiher: %s\n", this.name, getEntleiher().getName());
         } else {
-            System.out.printf("Buch: %s, Entleiher: Niemand\n", this.name);
+            System.out.printf("Buch: %s; Entleiher: Niemand\n", this.name);
         }
     }
 }

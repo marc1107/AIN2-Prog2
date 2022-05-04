@@ -37,7 +37,7 @@ public class Person {
     }
 
     public void print() {
-        System.out.printf("Name: %s\tAusgeliehene Bücher: ", this.name);
+        System.out.printf("Name: %s ------- Ausgeliehene Bücher: ", this.name);
         for (Buch b: ausgelieheneBuecher) {
             System.out.printf("%s, ", b.getName());
         }
