@@ -16,21 +16,24 @@ public class Person {
     }
 
     public boolean leihtAus(Buch b) {
-        if (b.wirdAusgeliehen(this)) {
-            ausgelieheneBuecher.add(b);
-            return true;
-        }
-        return false;
+        if (this.ausgelieheneBuecher.contains(b))
+            return false;
+
+        if(b.getEntleiher() != null && b.getEntleiher() != this)
+            return false;
+
+        b.wirdAusgeliehen(this)
+        ausgelieheneBuecher.add(b);
+        return true;
     }
 
     public boolean gibtZurueck(Buch b) {
-        for (Buch b2: ausgelieheneBuecher) {
-            if (b.equals(b2) && b.wirdZurueckGegeben()) {
-                ausgelieheneBuecher.remove(b);
-                return true;
-            }
-        }
-        return false;
+        if (!this.ausgelieheneBuecher.contains(b))
+            return false;
+
+        this.ausgelieheneBuecher.remove(b);
+        b.wirdZurueckGegeben();
+        return true;
     }
 
     public void print() {

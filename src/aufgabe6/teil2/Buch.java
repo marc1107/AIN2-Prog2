@@ -20,6 +20,7 @@ public class Buch {
     public boolean wirdAusgeliehen(Person p) {
         if (this.entleiher == null) {
             this.entleiher = p;
+            p.leihtAus(this);
             return true;
         }
         return false;
@@ -27,7 +28,9 @@ public class Buch {
 
     public boolean wirdZurueckGegeben() {
         if (this.entleiher != null) {
+            Person p = this.entleiher;
             this.entleiher = null;
+            p.gibtZurueck(this);
             return true;
         }
         return false;
