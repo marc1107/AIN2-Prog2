@@ -22,7 +22,7 @@ public class Person {
         if(b.getEntleiher() != null && b.getEntleiher() != this)
             return false;
 
-        b.wirdAusgeliehen(this)
+        b.wirdAusgeliehen(this);
         ausgelieheneBuecher.add(b);
         return true;
     }
