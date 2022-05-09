@@ -75,7 +75,7 @@ public class ArrayFrequencyTable_Test {
 		in = new LineNumberReader(new FileReader("Kafka_Der_Prozess.txt"));
 		String line;
 		
-		// Text einlesen und Häfigkeiten aller Wörter bestimmen:
+		// Text einlesen und Häufigkeiten aller Wörter bestimmen:
 		while ((line = in.readLine()) != null) {
 			String[] wf = line.split("[^a-z^A-Z^ß^ä^ö^ü^Ä^Ö^Ü]+");
 			for (String w: wf) {
