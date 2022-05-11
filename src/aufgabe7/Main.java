@@ -149,6 +149,11 @@ public class Main {
         }*/
 
         hybridQuickSort(cardTest200, "200.000 Spielkarten");
+        // Zum Zeigen, dass sortiert wurde
+        /*System.out.println("Sortiert:");
+        for (int i = 0; i < cardTest200.length; i++) {
+            System.out.printf("%s, ", cardTest200[i]);
+        }*/
         hybridQuickSortMedian(card200_copy, "200.000 Spielkarten");
         arraySort(card200_copy1, "200.000 Spielkarten");
 

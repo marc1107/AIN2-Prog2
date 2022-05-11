@@ -7,12 +7,11 @@ public class HybridQS {
         int li = 0;
         int re = a.length - 1;
 
-        hybridQuickSort(a, li, re);
-        /*if (a.length > N) {
+        if (a.length > N) {
             hybridQuickSort(a, li, re);
         } else {
             insertionSort(a, li, re);
-        }*/
+        }
     }
 
     public static <T extends Comparable<T>> void hybridQuickSortMedian(T[] a) {
@@ -62,22 +61,6 @@ public class HybridQS {
     }
 
     private static <T extends Comparable<T>> int partition(T[] a, int li, int re) {
-        /*T pivot = a[re];
-
-        int i = li - 1;
-
-        for (int j = li; j < re; j++) {
-            if (!(a[j].compareTo(pivot) > 0)) { // if (a[j] <= pivot)
-                i++;
-                T tmp = a[i];
-                a[i] = a[j];
-                a[j] = tmp;
-            }
-        }
-        T tmp = a[i + 1];
-        a[i + 1] = a[re];
-        a[re] = tmp;
-        return (i + 1);*/
         T v = a[re];
         int i = li - 1;
         int j = re;
@@ -128,18 +111,5 @@ public class HybridQS {
         a[i] = v;
 
         return i;
-
-        /*for (int j = li; j < re; j++) {
-            if (!(a[j].compareTo(pivot) > 0)) { // if (a[j] <= pivot)
-                i++;
-                T tmp = a[i];
-                a[i] = a[j];
-                a[j] = tmp;
-            }
-        }
-        T tmp = a[i + 1];
-        a[i + 1] = a[re];
-        a[re] = tmp;
-        return (i + 1);*/
     }
 }
