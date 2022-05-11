@@ -17,7 +17,7 @@ public class HybridQS {
         int li = 0;
         int re = a.length - 1;
         if (a.length > n) {
-            hybridQuickSort(a, li, re);
+            hybridQuickSortMedian(a, li, re);
         } else {
             insertionSort(a, li, re);
         }

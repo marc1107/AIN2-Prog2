@@ -112,8 +112,8 @@ public class Main {
         System.out.printf("\nZeit Kafka mit HybridQuicksortMedian: %s msec\n", elapsedTime);
 
         // Test 4 (Spielkarten sortieren)
-        Card[] cardTest100 = new Card[100];
-        Card[] cardTest200 = new Card[200];
+        Card[] cardTest100 = new Card[100000];
+        Card[] cardTest200 = new Card[200000];
 
         // 100 zufällige Karten erzeugen
         for (int i = 0; i < cardTest100.length; i++) {
@@ -196,8 +196,8 @@ public class Main {
         Card[] card200_copy1 = Arrays.copyOf(cardTest200, cardTest200.length);
 
         start = System.nanoTime(); // aktuelle Zeit in nsec
-        // Sortieren HybridQuicksort
-        HybridQS.hybridQuickSort(cardTest200);
+        // Sortieren HybridQuicksortMedian
+        HybridQS.hybridQuickSortMedian(card200_copy);
         end = System.nanoTime();
         elapsedTime = (double)(end-start)/1.0e06; // Zeit in msec
 
@@ -206,14 +206,6 @@ public class Main {
         for (int i = 0; i < cardTest200.length; i++) {
             System.out.printf("%s, ", cardTest200[i]);
         }*/
-
-        System.out.printf("\nZeit 200 Karten mit HybridQuicksort: %s msec\n", elapsedTime);
-
-        start = System.nanoTime(); // aktuelle Zeit in nsec
-        // Sortieren HybridQuicksortMedian
-        HybridQS.hybridQuickSortMedian(card200_copy);
-        end = System.nanoTime();
-        elapsedTime = (double)(end-start)/1.0e06; // Zeit in msec
 
         System.out.printf("\nZeit 200 Karten mit HybridQuicksortMedian: %s msec\n", elapsedTime);
 
