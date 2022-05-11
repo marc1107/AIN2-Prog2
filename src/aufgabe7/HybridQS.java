@@ -37,14 +37,14 @@ public class HybridQS {
     }
 
     public static <T extends Comparable<T>> void hybridQuickSort(T[] a, int li, int re) {
-        if (re > li) {
-            if (re - li > N) {
+        if (re - li > N) {
+            if (re > li) {
                 int pivot = partition(a, li, re);
                 hybridQuickSort(a, li, pivot - 1);
                 hybridQuickSort(a, pivot + 1, re);
-            } else {
-                insertionSort(a, li, re);
             }
+        } else {
+            insertionSort(a, li, re);
         }
     }
 
