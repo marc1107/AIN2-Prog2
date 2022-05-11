@@ -94,6 +94,9 @@ public class HybridQS {
             a[i] = temp;
         }
 
+        a[re] = a[i];
+        a[i] = v;
+
         return i;
     }
 
