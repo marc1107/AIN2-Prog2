@@ -67,7 +67,7 @@ public class HybridQS {
 
         while(true) {
             do i++; while (a[i].compareTo(v) < 0);
-            do j--; while ((j >= li) && (a[j].compareTo(v) > 0));
+            do j--; while (j >= li && a[j].compareTo(v) > 0);
 
             if (i >= j) {
                 break;
