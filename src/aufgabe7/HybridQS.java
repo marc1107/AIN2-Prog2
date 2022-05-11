@@ -25,10 +25,10 @@ public class HybridQS {
     }
 
     public static <T extends Comparable<T>> void insertionSort(T[] a, int li, int re) {
-        for (int i = li + 1; i < re + 1; i++) { // Evtl. Fehler?
+        for (int i = li + 1; i < re + 1; i++) {
             T v = a[i];
             int j = i - 1;
-            while (j >= 0 && a[j].compareTo(v) > 0) {
+            while (j >= li && a[j].compareTo(v) > 0) {
                 a[j+1] = a[j];
                 j--;
             }
