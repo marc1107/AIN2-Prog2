@@ -32,7 +32,7 @@ public class Main {
         // Sortieren
         HybridQS.hybridQuickSort(test1);
         long end = System.nanoTime();
-        double elapsedTime = (double)(end-start)/1.0e06; // Zeit in msec
+        double elapsedTime = (double) (end - start) / 1.0e06; // Zeit in msec
 
         // Zum Zeigenb, dass sortiert wurde
         System.out.println("\nSortiert:");
@@ -55,7 +55,7 @@ public class Main {
         // Sortieren
         HybridQS.hybridQuickSort(test2);
         end = System.nanoTime();
-        elapsedTime = (double)(end-start)/1.0e06; // Zeit in msec
+        elapsedTime = (double) (end - start) / 1.0e06; // Zeit in msec
 
         // Zum Zeigen, dass sortiert wurde
         System.out.println("\nSortiert:");
@@ -75,26 +75,20 @@ public class Main {
         // Text einlesen und Häufigkeiten aller Wörter bestimmen:
         while ((line = in.readLine()) != null) {
             String[] wf = line.split("[^a-z^A-Z^ß^ä^ö^ü^Ä^Ö^Ü]+");
-            for (String w: wf) {
+            for (String w : wf) {
                 if (w.length() == 0 || w.length() == 1)
                     continue;
                 //System.out.println(w);
                 if (index >= test3.length) {
                     test3 = Arrays.copyOf(test3, test3.length + 1000);
                 }
-                    test3[index] = w;
-                    index++;
+                test3[index] = w;
+                index++;
             }
         }
 
         test3 = Arrays.copyOf(test3, index);
         String[] test3_copy = Arrays.copyOf(test3, test3.length);
-
-        start = System.nanoTime(); // aktuelle Zeit in nsec
-        // Sortieren
-        HybridQS.hybridQuickSort(test3);
-        end = System.nanoTime();
-        elapsedTime = (double)(end-start)/1.0e06; // Zeit in msec
 
         // Zum Zeigen, dass sortiert wurde
         /*System.out.println("Sortiert:");
@@ -102,14 +96,8 @@ public class Main {
             System.out.print(w + ", ");
         }*/
 
-        System.out.printf("\nZeit Kafka mit HybridQuicksort: %s msec\n", elapsedTime);
-
-        start = System.nanoTime(); // aktuelle Zeit in nsec
-        // Sortieren
-        HybridQS.hybridQuickSortMedian(test3_copy);
-        end = System.nanoTime();
-        elapsedTime = (double)(end-start)/1.0e06; // Zeit in msec
-        System.out.printf("\nZeit Kafka mit HybridQuicksortMedian: %s msec\n", elapsedTime);
+        hybridQuickSort(test3, "Kafka");
+        hybridQuickSortMedian(test3_copy, "Kafka");
 
         // Test 4 (Spielkarten sortieren)
         Card[] cardTest100 = new Card[100000];
@@ -127,60 +115,19 @@ public class Main {
         Card[] card100_copy = Arrays.copyOf(cardTest100, cardTest100.length);
         Card[] card100_copy1 = Arrays.copyOf(cardTest100, cardTest100.length);
 
-        start = System.nanoTime(); // aktuelle Zeit in nsec
-        // Sortieren HybridQuicksort
-        HybridQS.hybridQuickSort(cardTest100);
-        end = System.nanoTime();
-        elapsedTime = (double)(end-start)/1.0e06; // Zeit in msec
-
         // Zum Zeigen, dass sortiert wurde
         /*System.out.println("Sortiert:");
         for (int i = 0; i < cardTest100.length; i++) {
             System.out.printf("%s, ", cardTest100[i]);
         }*/
 
-        System.out.printf("\nZeit 100 Karten mit HybridQuicksort: %s msec\n", elapsedTime);
+        hybridQuickSort(cardTest100, "100.000 Spielkarten");
+        hybridQuickSortMedian(card100_copy, "100.000 Spielkarten");
+        arraySort(card100_copy1, "100.000 Spielkarten");
 
-        start = System.nanoTime(); // aktuelle Zeit in nsec
-        // Sortieren HybridQuicksortMedian
-        HybridQS.hybridQuickSortMedian(card100_copy);
-        end = System.nanoTime();
-        elapsedTime = (double)(end-start)/1.0e06; // Zeit in msec
-
-        System.out.printf("\nZeit 100 Karten mit HybridQuicksortMedian: %s msec\n", elapsedTime);
-
-        start = System.nanoTime(); // aktuelle Zeit in nsec
-        // Sortieren mit Arrays.sort
-        Arrays.sort(card100_copy1);
-        end = System.nanoTime();
-        elapsedTime = (double)(end-start)/1.0e06; // Zeit in msec
-
-        System.out.printf("\nZeit 100 Karten mit Arrays.sort: %s msec\n", elapsedTime);
-
-        start = System.nanoTime(); // aktuelle Zeit in nsec
-        // Sortieren HybridQuicksort
-        HybridQS.hybridQuickSort(cardTest100);
-        end = System.nanoTime();
-        elapsedTime = (double)(end-start)/1.0e06; // Zeit in msec
-
-        System.out.printf("\nZeit 100 sortierte Karten mit HybridQuicksort: %s msec\n", elapsedTime);
-
-        start = System.nanoTime(); // aktuelle Zeit in nsec
-        // Sortieren HybridQuicksortMedian
-        HybridQS.hybridQuickSortMedian(cardTest100);
-        end = System.nanoTime();
-        elapsedTime = (double)(end-start)/1.0e06; // Zeit in msec
-
-        System.out.printf("\nZeit 100 sortierte Karten mit HybridQuicksortMedian: %s msec\n", elapsedTime);
-
-        start = System.nanoTime(); // aktuelle Zeit in nsec
-        // Sortieren mit Arrays.sort
-        Arrays.sort(cardTest100);
-        end = System.nanoTime();
-        elapsedTime = (double)(end-start)/1.0e06; // Zeit in msec
-
-        System.out.printf("\nZeit 100 sortierte Karten mit Arrays.sort: %s msec\n", elapsedTime);
-
+        hybridQuickSort(cardTest100, "100.000 sortierte Karten");
+        hybridQuickSortMedian(cardTest100, "100.000 sortierte Karten");
+        arraySort(cardTest100, "100.000 sortierte Karten");
 
 
         // 200 zufällige Karten erzeugen
@@ -195,51 +142,51 @@ public class Main {
         Card[] card200_copy = Arrays.copyOf(cardTest200, cardTest200.length);
         Card[] card200_copy1 = Arrays.copyOf(cardTest200, cardTest200.length);
 
-        start = System.nanoTime(); // aktuelle Zeit in nsec
-        // Sortieren HybridQuicksortMedian
-        HybridQS.hybridQuickSortMedian(card200_copy);
-        end = System.nanoTime();
-        elapsedTime = (double)(end-start)/1.0e06; // Zeit in msec
-
         // Zum Zeigen, dass sortiert wurde
         /* Systen.out.println("Sortiert:");
         for (int i = 0; i < cardTest200.length; i++) {
             System.out.printf("%s, ", cardTest200[i]);
         }*/
 
-        System.out.printf("\nZeit 200 Karten mit HybridQuicksortMedian: %s msec\n", elapsedTime);
+        //hybridQuickSort(cardTest200, "200.000 Spielkarten");
+        hybridQuickSortMedian(card200_copy, "200.000 Spielkarten");
+        arraySort(card200_copy1, "200.000 Spielkarten");
 
-        start = System.nanoTime(); // aktuelle Zeit in nsec
-        // Sortieren Arrays.sort
-        Arrays.sort(card200_copy1);
-        end = System.nanoTime();
-        elapsedTime = (double)(end-start)/1.0e06; // Zeit in msec
+        //hybridQuickSort(cardTest200, "200.000 sortierte Karten");
+        hybridQuickSortMedian(cardTest200, "200.000 sortierte Karten");
+        arraySort(cardTest200, "200.000 sortierte Karten");
+    }
 
-        System.out.printf("\nZeit 200 Karten mit Arrays.sort: %s msec\n", elapsedTime);
-
-        start = System.nanoTime(); // aktuelle Zeit in nsec
+    private static <T extends Comparable<T>> void hybridQuickSort(T[] a, String text) {
+        System.out.printf("\nZeit %s mit HybridQuicksort: ", text);
+        long start = System.nanoTime(); // aktuelle Zeit in nsec
         // Sortieren HybridQuicksort
-        HybridQS.hybridQuickSort(cardTest200);
-        end = System.nanoTime();
-        elapsedTime = (double)(end-start)/1.0e06; // Zeit in msec
+        HybridQS.hybridQuickSort(a);
+        long end = System.nanoTime();
+        double elapsedTime = (double)(end-start)/1.0e06; // Zeit in msec
 
-        System.out.printf("\nZeit 200 sortierte Karten mit HybridQuicksort: %s msec\n", elapsedTime);
+        System.out.printf("%s msec\n", elapsedTime);
+    }
 
-        start = System.nanoTime(); // aktuelle Zeit in nsec
+    private static <T extends Comparable<T>> void hybridQuickSortMedian(T[] a, String text) {
+        System.out.printf("\nZeit %s mit HybridQuicksortMedian: ", text);
+        long start = System.nanoTime(); // aktuelle Zeit in nsec
         // Sortieren HybridQuicksortMedian
-        HybridQS.hybridQuickSortMedian(cardTest200);
-        end = System.nanoTime();
-        elapsedTime = (double)(end-start)/1.0e06; // Zeit in msec
+        HybridQS.hybridQuickSortMedian(a);
+        long end = System.nanoTime();
+        double elapsedTime = (double)(end-start)/1.0e06; // Zeit in msec
 
-        System.out.printf("\nZeit 200 sortierte Karten mit HybridQuicksortMedian: %s msec\n", elapsedTime);
+        System.out.printf("%s msec\n", elapsedTime);
+    }
 
-        start = System.nanoTime(); // aktuelle Zeit in nsec
+    private static <T extends Comparable<T>> void arraySort(T[] a, String text) {
+        System.out.printf("\nZeit %s mit Arrays.sort: ", text);
+        long start = System.nanoTime(); // aktuelle Zeit in nsec
         // Sortieren Arrays.sort
-        Arrays.sort(cardTest200);
-        end = System.nanoTime();
-        elapsedTime = (double)(end-start)/1.0e06; // Zeit in msec
+        Arrays.sort(a);
+        long end = System.nanoTime();
+        double elapsedTime = (double)(end-start)/1.0e06; // Zeit in msec
 
-        System.out.printf("\nZeit 200 sortierte Karten mit Arrays.sort: %s msec\n", elapsedTime);
-
+        System.out.printf("%s msec\n", elapsedTime);
     }
 }

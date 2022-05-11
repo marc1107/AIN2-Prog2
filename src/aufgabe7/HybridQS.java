@@ -1,22 +1,24 @@
 package aufgabe7;
 
 public class HybridQS {
-    private static final int n = 100;
+    private static final int N = 100;
 
     public static <T extends Comparable<T>> void hybridQuickSort(T[] a) {
         int li = 0;
         int re = a.length - 1;
-        if (a.length > n) {
+
+        hybridQuickSort(a, li, re);
+        /*if (a.length > N) {
             hybridQuickSort(a, li, re);
         } else {
             insertionSort(a, li, re);
-        }
+        }*/
     }
 
     public static <T extends Comparable<T>> void hybridQuickSortMedian(T[] a) {
         int li = 0;
         int re = a.length - 1;
-        if (a.length > n) {
+        if (a.length > N) {
             hybridQuickSortMedian(a, li, re);
         } else {
             insertionSort(a, li, re);
@@ -36,19 +38,19 @@ public class HybridQS {
     }
 
     public static <T extends Comparable<T>> void hybridQuickSort(T[] a, int li, int re) {
-        if (re - li > n) {
-            if (li < re) {
+        if (re > li) {
+            if (re - li > N) {
                 int pivot = partition(a, li, re);
                 hybridQuickSort(a, li, pivot - 1);
                 hybridQuickSort(a, pivot + 1, re);
+            } else {
+                insertionSort(a, li, re);
             }
-        } else {
-            insertionSort(a, li, re);
         }
     }
 
     public static <T extends Comparable<T>> void hybridQuickSortMedian(T[] a, int li, int re) {
-        if (re - li > n) {
+        if (re - li > N) {
             if (li < re) {
                 int pivot = partitionMedian(a, li, re);
                 hybridQuickSortMedian(a, li, pivot - 1);
@@ -60,7 +62,7 @@ public class HybridQS {
     }
 
     private static <T extends Comparable<T>> int partition(T[] a, int li, int re) {
-        T pivot = a[re];
+        /*T pivot = a[re];
 
         int i = li - 1;
 
@@ -75,7 +77,24 @@ public class HybridQS {
         T tmp = a[i + 1];
         a[i + 1] = a[re];
         a[re] = tmp;
-        return (i + 1);
+        return (i + 1);*/
+        T v = a[re];
+        int i = li - 1;
+        int j = re;
+
+        while(true) {
+            do i++; while (a[i].compareTo(v) < 0);
+            do j--; while ((j >= li) && (a[j].compareTo(v) > 0));
+
+            if (i >= j) {
+                break;
+            }
+            T temp = a[j];
+            a[j] = a[i];
+            a[i] = temp;
+        }
+
+        return i;
     }
 
     private static <T extends Comparable<T>> int partitionMedian(T[] a, int li, int re) {
