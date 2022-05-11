@@ -101,17 +101,35 @@ public class HybridQS {
     }
 
     private static <T extends Comparable<T>> int partitionMedian(T[] a, int li, int re) {
-        T pivot;
+        T v;
         if (a[li].compareTo(a[re]) <= 0 && a[li].compareTo(a[re/2]) >= 0)
-            pivot = a[li];
+            v = a[li];
         else if (a[re].compareTo(a[li]) <= 0 && a[re].compareTo(a[re/2]) >= 0)
-            pivot = a[re];
+            v = a[re];
         else
-            pivot = a[re/2];
+            v = a[re/2];
 
         int i = li - 1;
+        int j = re;
 
-        for (int j = li; j < re; j++) {
+        while(true) {
+            do i++; while (a[i].compareTo(v) < 0);
+            do j--; while ((j >= li) && (a[j].compareTo(v) > 0));
+
+            if (i >= j) {
+                break;
+            }
+            T temp = a[j];
+            a[j] = a[i];
+            a[i] = temp;
+        }
+
+        a[re] = a[i];
+        a[i] = v;
+
+        return i;
+
+        /*for (int j = li; j < re; j++) {
             if (!(a[j].compareTo(pivot) > 0)) { // if (a[j] <= pivot)
                 i++;
                 T tmp = a[i];
@@ -122,6 +140,6 @@ public class HybridQS {
         T tmp = a[i + 1];
         a[i + 1] = a[re];
         a[re] = tmp;
-        return (i + 1);
+        return (i + 1);*/
     }
 }
