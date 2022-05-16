@@ -1,6 +1,5 @@
 package aufgabe8;
 
-import java.util.Map;
 import java.util.Set;
 
 public abstract class CompoundExpression implements Expression {
