@@ -5,7 +5,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class Constant implements Expression {
-    private double con;
+    private final double con;
 
     public Constant (double con) {
         this.con = con;

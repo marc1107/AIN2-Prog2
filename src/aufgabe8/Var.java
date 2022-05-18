@@ -5,7 +5,7 @@ import java.util.Set;
 import java.util.TreeSet;
 
 public class Var implements Expression {
-    private String name;
+    private final String name;
 
     public Var (String name) {
         this.name = name;
