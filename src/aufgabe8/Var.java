@@ -18,7 +18,7 @@ public class Var implements Expression {
 
     @Override
     public Set<String> getVars() {
-        Set<String> set = new TreeSet<String>();
+        Set<String> set = new TreeSet<>();
         set.add(name);
         return set;
     }
