@@ -5,6 +5,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Locale;
 
 public class Rechner extends JFrame implements ActionListener {
     JTextField tfOperandX;
@@ -176,17 +177,17 @@ public class Rechner extends JFrame implements ActionListener {
             }
 
             if (e.getSource() == bPlus) {
-                tfResultat.setText(Double.toString(operandX + operandY));
+                tfResultat.setText(String.format(Locale.US, "%.6f", operandX + operandY));
 
             } else if (e.getSource() == bMal) {
-                tfResultat.setText(Double.toString(operandX * operandY));
+                tfResultat.setText(String.format(Locale.US, "%.6f", operandX * operandY));
 
             } else if (e.getSource() == bMinus) {
-                tfResultat.setText(Double.toString(operandX - operandY));
+                tfResultat.setText(String.format(Locale.US, "%.6f", operandX - operandY));
 
             } else if (e.getSource() == bGeteilt) {
                 if (operandY != 0)
-                    tfResultat.setText(Double.toString(operandX / operandY));
+                    tfResultat.setText(String.format(Locale.US, "%.6f", operandX / operandY));
                 else
                     System.out.println("Durch 0 teilen ist nicht drin!");
 
@@ -200,7 +201,7 @@ public class Rechner extends JFrame implements ActionListener {
                     // In Radian angegeben
                     sin = Math.sin(operandX);
                 }
-                tfResultat.setText(Double.toString(sin));
+                tfResultat.setText(String.format(Locale.US, "%.6f", sin));
 
             } else if (e.getSource() == bCos) {
                 tfOperandY.setText("0");
@@ -212,15 +213,15 @@ public class Rechner extends JFrame implements ActionListener {
                     // In Radian angegeben
                     cos = Math.cos(operandX);
                 }
-                tfResultat.setText(Double.toString(cos));
+                tfResultat.setText(String.format(Locale.US, "%.6f", cos));
 
             } else if (e.getSource() == bHoch) {
-                tfResultat.setText(Double.toString(Math.pow(operandX, operandY)));
+                tfResultat.setText(String.format(Locale.US, "%.6f", Math.pow(operandX, operandY)));
 
             } else if (e.getSource() == bLog) {
                 tfOperandY.setText("0");
                 double log = Math.log(operandX) / Math.log(2);
-                tfResultat.setText(Double.toString(log));
+                tfResultat.setText(String.format(String.format(Locale.US, "%.6f", log)));
             }
         }
     }
