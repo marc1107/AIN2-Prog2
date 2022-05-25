@@ -23,6 +23,10 @@ public class Rechner extends JFrame implements ActionListener {
     JButton bLog;
     JButton bClear;
 
+    public static void main(String[] args) {
+        new Rechner();
+    }
+
     public Rechner() {
         this.setTitle("Taschenrechner");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -135,10 +139,6 @@ public class Rechner extends JFrame implements ActionListener {
         this.setVisible(true);
     }
 
-    public static void main(String[] args) {
-        JFrame frame = new Rechner();
-    }
-
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == chLightDisplay) {
@@ -164,8 +164,8 @@ public class Rechner extends JFrame implements ActionListener {
             tfResultat.setText("0");
 
         } else {
-            double operandX = 0.0;
-            double operandY = 0.0;
+            double operandX;
+            double operandY;
 
             try {
                 operandX = Double.parseDouble(tfOperandX.getText());
@@ -192,7 +192,7 @@ public class Rechner extends JFrame implements ActionListener {
 
             } else if (e.getSource() == bSin) {
                 tfOperandY.setText("0");
-                double sin = 0.0;
+                double sin;
                 if (rbDeg.isSelected()) {
                     // In Grad angegeben
                     sin = Math.sin(Math.toRadians(operandX));
@@ -204,7 +204,7 @@ public class Rechner extends JFrame implements ActionListener {
 
             } else if (e.getSource() == bCos) {
                 tfOperandY.setText("0");
-                double cos = 0.0;
+                double cos;
                 if (rbDeg.isSelected()) {
                     // In Grad angegeben
                     cos = Math.cos(Math.toRadians(operandX));
