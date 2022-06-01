@@ -221,7 +221,7 @@ public class Rechner extends JFrame implements ActionListener {
             } else if (e.getSource() == bLog) {
                 tfOperandY.setText("0");
                 double log = Math.log(operandX) / Math.log(2);
-                tfResultat.setText(String.format(String.format(Locale.US, "%.6f", log)));
+                tfResultat.setText(String.format(Locale.US, "%.6f", log));
             }
         }
     }
