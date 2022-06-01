@@ -32,7 +32,6 @@ public class Rechner extends JFrame implements ActionListener {
         this.setTitle("Taschenrechner");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // Programm zentriert starten
-        this.setLocationRelativeTo(null);
 
         // Felder für erstes Panel
         JLabel lblOperandX = new JLabel("Operand x");
@@ -137,6 +136,7 @@ public class Rechner extends JFrame implements ActionListener {
         this.add(mainPanel);
 
         this.pack();
+        this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
 
