@@ -17,8 +17,10 @@ public class TelefonBuchGUI extends JFrame {
         // TelefonBuch anlegen:
         telBuch = new TelefonBuch();
 
+        taAusgabe = new JTextArea(20, 2);
+
         // Menuleiste einbauen:
-        JMenuBar menuBar = new TelefonBuchMenuBar(telBuch);
+        JMenuBar menuBar = new TelefonBuchMenuBar(telBuch, taAusgabe);
         this.setJMenuBar(menuBar);
 
         // mainPanel mit Umrandung versehen und das
@@ -27,7 +29,6 @@ public class TelefonBuchGUI extends JFrame {
         mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.PAGE_AXIS));
 
-        taAusgabe = new JTextArea(20, 2);
         JPanel einfuegenPanel = new TelefonBuchEinfuegenPanel(telBuch, taAusgabe);
         JPanel suchenPanel = new TelefonBuchSuchenLoeschenPanel(telBuch, taAusgabe);
         taAusgabe.setEditable(false);

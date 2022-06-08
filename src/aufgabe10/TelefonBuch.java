@@ -14,18 +14,14 @@ import java.util.logging.Logger;
 
 public class TelefonBuch {
 
-    private TreeMap<String,String> telBuch = new TreeMap<String,String>();
+    private final TreeMap<String,String> telBuch = new TreeMap<>();
 
     public boolean insert(String name, String zusatz, String telNr) {
-        if (telBuch.put(name + " " + zusatz, telNr) == null)
-            return true;
-        return false;
+        return telBuch.put(name + " " + zusatz, telNr) == null;
     }
 
     public boolean remove(String name, String zusatz) {
-        if (telBuch.remove(name + " " + zusatz) != null)
-            return true;
-        return false;
+        return telBuch.remove(name + " " + zusatz) != null;
     }
 
     public String exactSearch(String name, String zusatz) {
@@ -48,7 +44,7 @@ public class TelefonBuch {
     }
 
     public void read(File f) {
-        LineNumberReader in = null;
+        LineNumberReader in;
         try {
             telBuch.clear();
             in = new LineNumberReader(new FileReader(f));
@@ -68,7 +64,7 @@ public class TelefonBuch {
     }
 
     public void save(File f) {
-        PrintWriter out = null;
+        PrintWriter out;
         try {
             out = new PrintWriter(f);
             for (Entry<String, String> eintrag : telBuch.entrySet()) {

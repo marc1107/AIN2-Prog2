@@ -56,16 +56,21 @@ public class TelefonBuchSuchenLoeschenPanel
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == buttonAnwenden) {
             if (funcComboBox.getSelectedIndex() == 0) {
-                if (!tfName.getText().equals("")) {
+                if (!tfName.getText().equals("") && !tfZusatz.getText().equals("")) {
                     String result = telBuch.exactSearch(tfName.getText(), tfZusatz.getText());
                     if (result != null) {
-                        taAusgabe.setText(result);
+                        taAusgabe.setText(tfName.getText() + " " + tfZusatz.getText() + " " + result);
                     } else {
                         JOptionPane.showMessageDialog(
                                 this,
                                 "Keinen Eintrag gefunden!"
                         );
                     }
+                } else if (!tfName.getText().equals("") && tfZusatz.getText().equals("")) {
+                    JOptionPane.showMessageDialog(
+                            this,
+                            "Zusatz eingeben!"
+                    );
                 } else {
                     // To Show all entries
                     List<String> list = telBuch.prefixSearch("");

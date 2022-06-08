@@ -6,6 +6,7 @@ package aufgabe10;
 import javax.swing.*;
 import java.io.*;
 import java.awt.event.*;
+import java.util.List;
 
 
 public class TelefonBuchMenuBar
@@ -17,9 +18,12 @@ public class TelefonBuchMenuBar
     JMenuItem TelBuchSpeichern;
     JMenuItem TelBuchBeenden;
     JFileChooser fc;
+    JTextArea taAusgabe;
 
-    public TelefonBuchMenuBar(TelefonBuch tb) {
+    public TelefonBuchMenuBar(TelefonBuch tb, JTextArea ta) {
         telBuch = tb;
+        taAusgabe = ta;
+
         MenuDatei = new JMenu("Datei");
         fc = new JFileChooser();
         TelBuchLesen = new JMenuItem("TelefonBuch lesen");
@@ -49,6 +53,12 @@ public class TelefonBuchMenuBar
             if (returnVal == JFileChooser.APPROVE_OPTION) {
                 File file = fc.getSelectedFile();
                 telBuch.read(file);
+
+                List<String> list = telBuch.prefixSearch("");
+                taAusgabe.setText("");
+                for (String eintrag : list) {
+                    taAusgabe.append(eintrag + "\n");
+                }
             }
         } else if (e.getSource() == TelBuchSpeichern) {
             int returnVal = fc.showSaveDialog(this);
