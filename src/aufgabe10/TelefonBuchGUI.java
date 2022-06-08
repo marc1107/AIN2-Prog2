@@ -4,18 +4,14 @@
 package aufgabe10;
 
 import javax.swing.*;
-import java.awt.*;
-import java.io.File;
-import java.util.Map;
 
 public class TelefonBuchGUI extends JFrame {
 
-    private TelefonBuch telBuch;
     public JTextArea taAusgabe;
 
     public TelefonBuchGUI() {
         // TelefonBuch anlegen:
-        telBuch = new TelefonBuch();
+        TelefonBuch telBuch = new TelefonBuch();
 
         taAusgabe = new JTextArea(20, 2);
 
@@ -34,11 +30,11 @@ public class TelefonBuchGUI extends JFrame {
         taAusgabe.setEditable(false);
         JScrollPane ausgabeScrollPane = new JScrollPane(taAusgabe);
 
-        /*telBuch.read(new File("TelBuchMit420Namen.txt"));
+        /* telBuch.read(new File("TelBuchMit420Namen.txt"));
 
         for (String eintrag : telBuch.prefixSearch("")) {
             taAusgabe.append(eintrag + "\n");
-        }*/
+        } */
 
         mainPanel.add(einfuegenPanel);
         mainPanel.add(suchenPanel);

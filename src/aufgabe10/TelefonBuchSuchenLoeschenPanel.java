@@ -4,22 +4,21 @@
 package aufgabe10;
 
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
-import java.awt.event.*;
-import javax.swing.border.*;
-import java.util.LinkedList;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
-import java.util.Map;
 
 public class TelefonBuchSuchenLoeschenPanel
         extends JPanel implements ActionListener {
 
-    private TelefonBuch telBuch;
-    private JTextField tfName;
-    private JTextField tfZusatz;
-    private JComboBox funcComboBox;
-    private JButton buttonAnwenden;
-    private JTextArea taAusgabe;
+    private final TelefonBuch telBuch;
+    private final JTextField tfName;
+    private final JTextField tfZusatz;
+    private final JComboBox funcComboBox;
+    private final JButton buttonAnwenden;
+    private final JTextArea taAusgabe;
 
     public TelefonBuchSuchenLoeschenPanel(TelefonBuch tb, JTextArea ta) {
         telBuch = tb;

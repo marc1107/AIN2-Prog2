@@ -12,19 +12,18 @@ import java.util.List;
 public class TelefonBuchMenuBar
         extends JMenuBar implements ActionListener {
 
-    private TelefonBuch telBuch;
-    JMenu MenuDatei;
-    JMenuItem TelBuchLesen;
-    JMenuItem TelBuchSpeichern;
-    JMenuItem TelBuchBeenden;
-    JFileChooser fc;
-    JTextArea taAusgabe;
+    private final TelefonBuch telBuch;
+    private final JMenuItem TelBuchLesen;
+    private final JMenuItem TelBuchSpeichern;
+    private final JMenuItem TelBuchBeenden;
+    private final JFileChooser fc;
+    private final JTextArea taAusgabe;
 
     public TelefonBuchMenuBar(TelefonBuch tb, JTextArea ta) {
         telBuch = tb;
         taAusgabe = ta;
 
-        MenuDatei = new JMenu("Datei");
+        JMenu menuDatei = new JMenu("Datei");
         fc = new JFileChooser();
         TelBuchLesen = new JMenuItem("TelefonBuch lesen");
         TelBuchSpeichern = new JMenuItem("TelefonBuch speichern");
@@ -40,11 +39,11 @@ public class TelefonBuchMenuBar
         // TelBuchBeenden.setMnemonic(KeyEvent.VK_3);
         TelBuchBeenden.addActionListener(this);
 
-        this.add(MenuDatei);
-        MenuDatei.add(TelBuchLesen);
-        MenuDatei.add(TelBuchSpeichern);
-        MenuDatei.add(sep);
-        MenuDatei.add(TelBuchBeenden);
+        this.add(menuDatei);
+        menuDatei.add(TelBuchLesen);
+        menuDatei.add(TelBuchSpeichern);
+        menuDatei.add(sep);
+        menuDatei.add(TelBuchBeenden);
     }
 
     public void actionPerformed(ActionEvent e) {

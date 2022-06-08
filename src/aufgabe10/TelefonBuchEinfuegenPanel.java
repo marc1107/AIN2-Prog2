@@ -12,12 +12,12 @@ import javax.swing.border.*;
 public class TelefonBuchEinfuegenPanel
         extends JPanel implements ActionListener {
 
-    private TelefonBuch telBuch;
-    private JTextField tfEinfuegenName;
-    private JTextField tfEinfuegenZusatz;
-    private JTextField tfEinfuegenTelNr;
-    private JButton buttonEinfuegen;
-    private JTextArea taAusgabe;
+    private final TelefonBuch telBuch;
+    private final JTextField tfEinfuegenName;
+    private final JTextField tfEinfuegenZusatz;
+    private final JTextField tfEinfuegenTelNr;
+    private final JButton buttonEinfuegen;
+    private final JTextArea taAusgabe;
 
     public TelefonBuchEinfuegenPanel(TelefonBuch tb, JTextArea ta) {
         telBuch = tb;
