@@ -1,7 +1,6 @@
 package aufgabe11.aufg2;
 
 import java.time.LocalDate;
-import java.time.chrono.ChronoLocalDate;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
