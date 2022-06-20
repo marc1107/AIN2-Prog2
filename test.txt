@@ -340,8 +340,6 @@ Noemi  7356
 Nora  706
 Ole  2879
 Oliver  4586
-Oliver 1 33245
-Oliver 3 87655
 Olivia  4952
 Oskar  352
 Pascal  6387
@@ -400,7 +398,7 @@ Theo  1862
 Theresa  5385
 Thomas  4724
 Thore  855
-Till  247
+Till 1 1234
 Tim  3859
 Timo  6291
 Timon  6617
