@@ -76,7 +76,7 @@ public class Person {
                 .forEach((Person person) -> System.out.println(person.getGeb()));
 
         persList.stream().filter(p -> p.getVorname().startsWith("A"))
-                .sorted(Comparator.comparing(Person::getGeb).reversed()).limit(3).forEach(System.out::println);
+                .sorted(Comparator.comparing(Person::getGeb)).limit(3).forEach(System.out::println);
     }
 
     private static boolean alleErwachsen(List<Person> persList, Predicate<Person> istErwachsen) {
