@@ -13,18 +13,22 @@ public class Queue {
     Node rear;
     int size;
 
-    public Queue(int d) {
-        rear = new Node(d, null);
-        rear.next = rear;
+    public Queue() {
+        rear = null;
         size = 0;
     }
 
     public void offer(int x) {
-        Node p = rear;
-        while(p.next != rear) {
-            p = p.next;
+        if (rear == null) {
+            rear = new Node(x, null);
+            rear.next = rear;
+        } else {
+            Node p = rear;
+            while (p.next != rear) {
+                p = p.next;
+            }
+            p.next = new Node(x, rear);
         }
-        p.next = new Node(x, rear);
         size++;
     }
 
