@@ -33,7 +33,7 @@ public class Queue {
     }
 
     public Node poll() {
-        if(rear.next == rear)
+        if(rear == null)
             throw new NullPointerException();
         Node p = rear.next;
         rear.next = rear.next.next;
@@ -42,9 +42,9 @@ public class Queue {
     }
 
     public void offerAll(Queue q) {
-            for(Node p = q.rear; p.next != q.rear; p = p.next) {
-                offer(p.data);
-            }
+        for(Node p = q.rear; p.next != q.rear; p = p.next) {
+            offer(p.data);
+        }
     }
 
     public int size() {

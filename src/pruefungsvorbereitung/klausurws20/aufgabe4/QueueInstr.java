@@ -3,8 +3,8 @@ package pruefungsvorbereitung.klausurws20.aufgabe4;
 public class QueueInstr extends Queue {
     int count;
 
-    public QueueInstr(int d) {
-        super(d);
+    public QueueInstr() {
+        super();
     }
 
     @Override
